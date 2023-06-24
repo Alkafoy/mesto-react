@@ -13,4 +13,3 @@
 ### JavaScript
 ### WebPack
 
-Ссылка на проект 

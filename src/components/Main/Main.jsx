@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import api from "../../utils/api";
 import Card from "../Card/Card.jsx";
 
-export default function Main({openEditProfile, openAddCard, openAvatar, openCardClick}) {
+export default function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     const [userName, setUserName] = useState('');
     const [userDescription, setUserDescription] = useState('');
     const [userAvatar, setUserAvatar] = useState('');
@@ -29,7 +29,7 @@ export default function Main({openEditProfile, openAddCard, openAvatar, openCard
                         className="profile__avatar-edit"
                         type="button"
                         aria-label="Редактировать аватар"
-                        onClick={openAvatar}
+                        onClick={onEditAvatar}
                     />
                 </div>
                 <div className="profile__info">
@@ -38,7 +38,7 @@ export default function Main({openEditProfile, openAddCard, openAvatar, openCard
                         className="profile__edit-button"
                         type="button"
                         aria-label="Редактировать профиль"
-                        onClick={openEditProfile}
+                        onClick={onEditProfile}
                     />
                     <p className="profile__description">{userDescription}</p>
                 </div>
@@ -46,7 +46,7 @@ export default function Main({openEditProfile, openAddCard, openAvatar, openCard
                     className="profile__add-button"
                     type="button"
                     aria-label="Добавить"
-                    onClick={openAddCard}
+                    onClick={onAddPlace}
                 ></button>
             </section>
             <section className="elements" aria-label="Места">
@@ -54,7 +54,7 @@ export default function Main({openEditProfile, openAddCard, openAvatar, openCard
                     {cards.map(data => {
                         return (
                             <li className="element" key={data._id}>
-                                <Card card={data} openCardClick={openCardClick}/>
+                                <Card card={data} openCardClick={onCardClick}/>
                             </li>
                         )
                     })}

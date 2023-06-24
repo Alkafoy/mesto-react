@@ -2,7 +2,7 @@ import Header from "./Header/Header.jsx";
 import Main from "./Main/Main.jsx";
 import Footer from "./Footer/Footer.jsx";
 import PopupWithForm from "./PopupWithForm/PopupWithForm.jsx";
-import PopupZoom from "./PopupZoom/PopupZoom.jsx";
+import ImagePopup from "./ImagePopup/ImagePopup.jsx";
 import {useState} from "react";
 
 function App() {
@@ -39,15 +39,15 @@ function App() {
     }
 
     return (
-        <div className="page">
+        <div>
 
             <Header/>
 
             <Main
-                openEditProfile={handleEditProfileClick}
-                openAddCard={handleAddPlaceClick}
-                openAvatar={handleEditAvatarClick}
-                openCardClick={handleCardClick}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
             />
 
             <Footer/>
@@ -130,7 +130,7 @@ function App() {
                 />
                 <span className="url-avatar-error popup__input-error"/>
             </PopupWithForm>
-            <PopupZoom
+            <ImagePopup
                 card={selectedCard}
                 isOpen={isImagePopup}
                 onClose={closeAllPopups}

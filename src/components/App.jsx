@@ -96,7 +96,8 @@ function App() {
                 setCurrentUser(userData);
                 cardsData.forEach(element => element.myId = userData._id);
                 setCards(cardsData)
-            });
+            })
+            .catch(err => console.error(`Ошибка при запросе карточек ${err}`))
     }, [])
 
     function handleCardDelete(event) {
@@ -148,7 +149,7 @@ function App() {
                 setIsSending(false);
             })
             .catch(err => {
-                console.error(`Ошибка при добавлении карточкиб ${err}`);
+                console.error(`Ошибка при добавлении карточки ${err}`);
                 setIsSending(false);
             })
 
@@ -184,6 +185,7 @@ function App() {
                     onClose={closeAllPopups}
                     isSending={isSending}
                     onAddPlace={handleAddPlaceSubmit}
+                    onOverlayClick={handleOverlayClick}
                 />
 
                 <PopupWithForm
@@ -200,6 +202,7 @@ function App() {
                     isOpen={isEditAvatarPopupOpen}
                     onClose={closeAllPopups}
                     isSending={isSending}
+                    onOverlayClick={handleOverlayClick}
                 />
                 <ImagePopup
                     card={selectedCard}

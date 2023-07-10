@@ -1,12 +1,22 @@
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import {useState} from "react";
 
 
 export default function AddPlacePopup({onClose, isOpen, onAddPlace, isSending, onOverlayClick}) {
+    const [title, setTitle] = useState("");
+    const [link, setLink] = useState("");
 
+    function handleTitleChange(e) {
+        setTitle(e.target.value);
+    }
+
+    function handleLinkChange(e) {
+        setLink(e.target.value);
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
-        onAddPlace({ title: document.getElementById('title-input').value, link: document.getElementById('url-input').value });
+        onAddPlace({ title, link });
 
     }
 
@@ -29,6 +39,8 @@ export default function AddPlacePopup({onClose, isOpen, onAddPlace, isSending, o
                 required=""
                 minLength={2}
                 maxLength={30}
+                value={title}
+                onChange={handleTitleChange}
             />
             <span className="title-input-error popup__input-error"/>
             <input
@@ -38,6 +50,8 @@ export default function AddPlacePopup({onClose, isOpen, onAddPlace, isSending, o
                 type="url"
                 placeholder="Ссылка на картинку"
                 required=""
+                value={link}
+                onChange={handleLinkChange}
             />
             <span className="url-input-error popup__input-error"/>
         </PopupWithForm>

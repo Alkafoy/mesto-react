@@ -11,7 +11,7 @@ export default function EditProfilePopup({onClose, isOpen, onUpdateUser, isSendi
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, isOpen]);
     function handleSubmit(e) {
         e.preventDefault();
         onUpdateUser({
@@ -34,7 +34,7 @@ export default function EditProfilePopup({onClose, isOpen, onUpdateUser, isSendi
                 id="name-input"
                 name="name"
                 type="text"
-                value={name}
+                value={name || ''}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Имя"
                 minLength={2}
@@ -48,7 +48,7 @@ export default function EditProfilePopup({onClose, isOpen, onUpdateUser, isSendi
                 id="description-input"
                 name="info"
                 type="text"
-                value={description}
+                value={description || ''}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Описание"
                 minLength={2}

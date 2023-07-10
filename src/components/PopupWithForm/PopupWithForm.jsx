@@ -1,6 +1,6 @@
-export default function PopupWithForm ({name, title, nameButton, children, isOpen, onClose}) {
+export default function PopupWithForm({name, title, nameButton, children, isOpen, onClose, onOverlayClick, onSubmit, isSending}) {
     return (
-        <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>
+        <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={onOverlayClick}>
             <div className="popup__container">
                 <button
                     className="popup__close-icon"
@@ -8,15 +8,19 @@ export default function PopupWithForm ({name, title, nameButton, children, isOpe
                     aria-label="Закрыть"
                     onClick={onClose}
                 />
-                <form className="popup__form popup__form_edit" noValidate="">
+                <form
+                    className="popup__form popup__form_edit"
+                    noValidate=""
+                    onSubmit={onSubmit}>
                     <h2 className="popup__title">{title}</h2>
                     {children}
                     <button
+                        disabled={isSending}
                         className="popup__submit-button"
                         type="submit"
                         aria-label="Сохранить"
                     >
-                        {nameButton||'Сохранить'}
+                        {nameButton || 'Сохранить'}
                     </button>
                 </form>
             </div>
